@@ -1,0 +1,7 @@
+2025-10-04 13:25:58,779 - root - INFO - Loaded configuration from config/system_config.json
+2025-10-04 13:25:59,912 - vocalshell.speech_engine - INFO - Microphone calibrated for ambient noise
+2025-10-04 13:26:52,430 - vocalshell.speech_engine - INFO - Vosk model loaded successfully
+2025-10-04 13:26:54,046 - vocalshell.nlp_parser - INFO - spaCy model loaded successfully
+2025-10-04 13:26:54,048 - vocalshell.nlp_parser - INFO - Loaded 2 command mappings
+2025-10-04 13:26:54,188 - comtypes.client._code_cache - INFO - Imported existing <module 'comtypes.gen' from 'C:\\Users\\acer\\OneDrive\\Desktop\\vocalshell\\venv\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
+2025-10-04 13:26:54,189 - comtypes.client._code_cache - INFO - Using writeable comtypes cache directory: 'C:\Users\acer\OneDrive\Desktop\vocalshell\venv\Lib\site-packages\comtypes\gen'

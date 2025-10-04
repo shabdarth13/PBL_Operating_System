@@ -1,0 +1,13 @@
+[
+  {
+    "original": "great fine",
+    "command": "great fine",
+    "success": false,
+    "output": "'great' is not recognized as an internal or external command,\noperable program or batch file.",
+    "metadata": {
+      "category": "direct",
+      "dangerous": false
+    },
+    "timestamp": "2025-10-04 14:36:39.177814"
+  }
+]
