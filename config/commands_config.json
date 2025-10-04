@@ -1,0 +1,273 @@
+{
+  "command_mappings": {
+    "list_files": {
+      "patterns": ["list files", "show file", "ls", "dir", "what is in this folder"],
+      "windows_command": "dir {path}",
+      "linux_command": "ls -la {path}",
+      "description": "List files and directories",
+      "dangerous": false
+    },
+    "change_directory": {
+      "patterns": ["change directory to (.*)", "cd (.*)", "go to (.*)", "navigate to (.*)"],
+      "windows_command": "cd /d {path}",
+      "linux_command": "cd {path}",
+      "description": "Change directory",
+      "dangerous": false
+    },
+    "create_directory": {
+      "patterns": ["create directory (.*)", "make folder (.*)", "mkdir (.*)"],
+      "windows_command": "mkdir {name}",
+      "linux_command": "mkdir {name}",
+      "description": "Create a directory",
+      "dangerous": false
+    },
+    "remove_directory": {
+      "patterns": ["delete directory (.*)", "remove folder (.*)", "rmdir (.*)", "rd (.*)"],
+      "windows_command": "rmdir /s /q {dir}",
+      "linux_command": "rm -r {dir}",
+      "description": "Remove a directory",
+      "dangerous": true
+    },
+    "create_file": {
+      "patterns": ["create file (.*)", "make file (.*)", "touch (.*)"],
+      "windows_command": "type nul > {filename}",
+      "linux_command": "touch {filename}",
+      "description": "Create an empty file",
+      "dangerous": false
+    },
+    "delete_file": {
+      "patterns": ["delete file (.*)", "erase file (.*)", "remove file (.*)"],
+      "windows_command": "del /f {filename}",
+      "linux_command": "rm -f {filename}",
+      "description": "Delete a file",
+      "dangerous": true
+    },
+    "copy_file": {
+      "patterns": ["copy file (.*) to (.*)"],
+      "windows_command": "copy {source} {destination}",
+      "linux_command": "cp {source} {destination}",
+      "description": "Copy a file",
+      "dangerous": false
+    },
+    "move_file": {
+      "patterns": ["move file (.*) to (.*)"],
+      "windows_command": "move {source} {destination}",
+      "linux_command": "mv {source} {destination}",
+      "description": "Move or rename a file",
+      "dangerous": false
+    },
+    "rename_file": {
+      "patterns": ["rename file (.*) to (.*)"],
+      "windows_command": "rename {old} {new}",
+      "linux_command": "mv {old} {new}",
+      "description": "Rename file",
+      "dangerous": false
+    },
+    "system_info": {
+      "patterns": ["system info", "show system details", "computer information", "ver", "hostname"],
+      "windows_command": "systeminfo",
+      "linux_command": "uname -a && lsb_release -a",
+      "description": "Show system information",
+      "dangerous": false
+    },
+    "tasklist": {
+      "patterns": ["show running tasks", "tasklist", "list processes"],
+      "windows_command": "tasklist",
+      "linux_command": "ps aux",
+      "description": "Show currently running processes",
+      "dangerous": false
+    },
+    "taskkill": {
+      "patterns": ["kill process (.*)", "terminate process (.*)"],
+      "windows_command": "taskkill /f /im {process}",
+      "linux_command": "killall {process}",
+      "description": "Terminate a process",
+      "dangerous": true
+    },
+    "shutdown": {
+      "patterns": ["shutdown", "restart", "log off", "power off"],
+      "windows_command": "shutdown /s /t 0",
+      "linux_command": "shutdown now",
+      "description": "Shutdown or restart the computer",
+      "dangerous": true
+    },
+    "network_info": {
+      "patterns": ["show network info", "ipconfig", "what is my ip", "network settings"],
+      "windows_command": "ipconfig",
+      "linux_command": "ifconfig || ip addr",
+      "description": "Show network configuration",
+      "dangerous": false
+    },
+    "ping_host": {
+      "patterns": ["ping (.*)"],
+      "windows_command": "ping {host}",
+      "linux_command": "ping -c 4 {host}",
+      "description": "Ping a host",
+      "dangerous": false
+    },
+    "clear_screen": {
+      "patterns": ["clear screen", "cls"],
+      "windows_command": "cls",
+      "linux_command": "clear",
+      "description": "Clear terminal screen",
+      "dangerous": false
+    },
+    "echo": {
+      "patterns": ["echo (.*)"],
+      "windows_command": "echo {text}",
+      "linux_command": "echo {text}",
+      "description": "Display a message",
+      "dangerous": false
+    },
+    "pause": {
+      "patterns": ["pause"],
+      "windows_command": "pause",
+      "linux_command": "read -p 'Press Enter to continue...'",
+      "description": "Pause execution",
+      "dangerous": false
+    },
+    "exit": {
+      "patterns": ["exit", "quit"],
+      "windows_command": "exit",
+      "linux_command": "exit",
+      "description": "Exit the shell",
+      "dangerous": false
+    },
+    "tree": {
+      "patterns": ["show directory tree", "tree"],
+      "windows_command": "tree",
+      "linux_command": "tree",
+      "description": "Show directory tree",
+      "dangerous": false
+    },
+    "findstr": {
+      "patterns": ["search in file (.*) for (.*)"],
+      "windows_command": "findstr {pattern} {filename}",
+      "linux_command": "grep '{pattern}' {filename}",
+      "description": "Search for text in a file",
+      "dangerous": false
+    },
+    "fc": {
+      "patterns": ["compare files (.*) and (.*)"],
+      "windows_command": "fc {file1} {file2}",
+      "linux_command": "diff {file1} {file2}",
+      "description": "Compare files",
+      "dangerous": false
+    },
+    "more": {
+      "patterns": ["show file (.*) page by page"],
+      "windows_command": "more {filename}",
+      "linux_command": "less {filename}",
+      "description": "Display file page by page",
+      "dangerous": false
+    },
+    "attrib": {
+      "patterns": ["set file attributes (.*)"],
+      "windows_command": "attrib {args}",
+      "linux_command": "chmod {args}",
+      "description": "Set file attributes",
+      "dangerous": true
+    },
+    "robocopy": {
+      "patterns": ["robocopy (.*) to (.*)"],
+      "windows_command": "robocopy {source} {destination} /E",
+      "linux_command": "cp -r {source} {destination}",
+      "description": "Advanced file copy",
+      "dangerous": false
+    },
+    "xcopy": {
+      "patterns": ["xcopy (.*) to (.*)"],
+      "windows_command": "xcopy {source} {destination} /E /I",
+      "linux_command": "cp -r {source} {destination}",
+      "description": "Copy files and directories",
+      "dangerous": false
+    },
+    "format_drive": {
+      "patterns": ["format drive (.*)"],
+      "windows_command": "format {drive} /fs:ntfs",
+      "linux_command": "mkfs.ext4 {device}",
+      "description": "Format a drive or partition",
+      "dangerous": true
+    },
+    "zip_files": {
+      "patterns": ["zip files (.*) into (.*)"],
+      "windows_command": "powershell Compress-Archive -Path {source} -DestinationPath {destination}",
+      "linux_command": "zip -r {destination} {source}",
+      "description": "Compress files into a zip archive",
+      "dangerous": false
+    },
+    "unzip_files": {
+      "patterns": ["unzip file (.*) to (.*)"],
+      "windows_command": "powershell Expand-Archive -Path {source} -DestinationPath {destination}",
+      "linux_command": "unzip {source} -d {destination}",
+      "description": "Extract zip archive",
+      "dangerous": false
+    },
+    "git_clone": {
+      "patterns": ["git clone (.*)"],
+      "windows_command": "git clone {repo}",
+      "linux_command": "git clone {repo}",
+      "description": "Clone a Git repository",
+      "dangerous": false
+    },
+    "git_commit": {
+      "patterns": ["git commit -m (.*)"],
+      "windows_command": "git commit -m \"{message}\"",
+      "linux_command": "git commit -m \"{message}\"",
+      "description": "Commit changes to Git",
+      "dangerous": false
+    },
+    "git_push": {
+      "patterns": ["git push"],
+      "windows_command": "git push",
+      "linux_command": "git push",
+      "description": "Push commits to remote Git repository",
+      "dangerous": false
+    },
+    "docker_ps": {
+      "patterns": ["list docker containers", "docker ps"],
+      "windows_command": "docker ps",
+      "linux_command": "docker ps",
+      "description": "List running Docker containers",
+      "dangerous": false
+    },
+    "docker_stop": {
+      "patterns": ["stop docker container (.*)"],
+      "windows_command": "docker stop {container}",
+      "linux_command": "docker stop {container}",
+      "description": "Stop a Docker container",
+      "dangerous": true
+    },
+    "wget_download": {
+      "patterns": ["download file (.*)"],
+      "windows_command": "wget {url}",
+      "linux_command": "wget {url}",
+      "description": "Download file from URL",
+      "dangerous": false
+    },
+    "curl_download": {
+      "patterns": ["curl download (.*)"],
+      "windows_command": "curl -O {url}",
+      "linux_command": "curl -O {url}",
+      "description": "Download file using curl",
+      "dangerous": false
+    },
+    "tar_extract": {
+      "patterns": ["extract tar file (.*) to (.*)"],
+      "windows_command": "tar -xf {source} -C {destination}",
+      "linux_command": "tar -xf {source} -C {destination}",
+      "description": "Extract tar archive",
+      "dangerous": false
+    },
+    "tar_create": {
+      "patterns": ["create tar archive (.*) from (.*)"],
+      "windows_command": "tar -cf {archive} {source}",
+      "linux_command": "tar -cf {archive} {source}",
+      "description": "Create tar archive",
+      "dangerous": false
+    }
+  },
+  "dangerous_commands": [
+    "rmdir /s", "del /f", "format", "shutdown", "taskkill /f", "rm -rf", "attrib", "docker stop", "mkfs"
+  ]
+}

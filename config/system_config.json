@@ -1,0 +1,24 @@
+{
+  "system": {
+    "model_path": "models/vosk-model-en-us-0.22",
+    "commands_config": "config/commands_config.json",
+    "voice_settings": "config/voice_settings.json",
+    "log_level": "INFO"
+  },
+  "speech": {
+    "timeout": 5,
+    "phrase_time_limit": 10,
+    "prefer_offline": false
+  },
+  "executor": {
+    "tts_rate": 150,
+    "tts_volume": 0.8,
+    "confirm_dangerous": true,
+    "max_output_length": 1000
+  },
+  "ui": {
+    "show_welcome": true,
+    "show_status": true,
+    "color_scheme": "default"
+  }
+}
