@@ -29,12 +29,12 @@ A powerful voice-controlled interface for Linux and Windows command lines that c
 
 #### Windows
 ```bash
-# Method 1: Automated setup
-setup_windows.bat
 
-# Method 2: Manual installation
+
+# Method : Manual installation
 git clone https://github.com/your-username/vocalshell.git
 cd vocalshell
 pip install -r requirements.txt
 python models/download_vosk_model.py
+
 python -m spacy download en_core_web_sm
