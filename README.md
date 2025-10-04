@@ -32,9 +32,9 @@ A powerful voice-controlled interface for Linux and Windows command lines that c
 
 
 # Method : Manual installation
-git clone https://github.com/your-username/vocalshell.git
-cd vocalshell
+
 pip install -r requirements.txt
 python models/download_vosk_model.py
-
+Create a Python Virtual Environment-python -m venv venv
 python -m spacy download en_core_web_sm
+python main.py
