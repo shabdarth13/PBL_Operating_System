@@ -6,7 +6,7 @@
     "log_level": "INFO"
   },
   "speech": {
-    "timeout": 4,
+    "timeout": 2,
     "phrase_time_limit": 15,
     "prefer_offline": false
   },

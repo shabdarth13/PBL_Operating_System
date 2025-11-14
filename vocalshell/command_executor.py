@@ -1,3 +1,4 @@
+
 # ================================
 # updated_command_executor.py
 # ================================
@@ -14,26 +15,24 @@ from rich.table import Table
 
 logger = logging.getLogger(__name__)
 
+
 class CommandExecutor:
     def __init__(self, config=None):
         self.console = Console()
         self.config = config or {}
         self.is_windows = platform.system() == "Windows"
-
         try:
             self.tts_engine = pyttsx3.init()
             self.tts_engine.setProperty("rate", self.config.get("tts_rate", 150))
-            self.tts_engine.setProperty("volume", self.config.get("tts_volume", 0.8))
+            self.tts_engine.setProperty("volume", self.config.get("tts_volume", 1.0))
         except:
             self.tts_engine = None
-
     def execute_command(self, command, metadata):
         try:
-            # Special handling for cd
             if command.lower().startswith("cd "):
                 path = command[3:].strip()
-
-                # Windows quick keywords
+                if self.is_windows and path.lower().startswith("/d "):
+                    path = path[3:].strip()
                 if self.is_windows:
                     from pathlib import Path
                     user_home = Path.home()
@@ -42,30 +41,20 @@ class CommandExecutor:
                     lower_path = path.lower()
 
                     if lower_path == "desktop":
-                        desktop_path = (
-                            onedrive_base / "Desktop" if (onedrive_base / "Desktop").exists() 
-                            else user_home / "Desktop"
-                        )
+                        desktop_path = onedrive_base / "Desktop" if (onedrive_base / "Desktop").exists() else user_home / "Desktop"
                         path = str(desktop_path)
 
                     elif lower_path == "documents":
-                        documents_path = (
-                            onedrive_base / "Documents" if (onedrive_base / "Documents").exists() 
-                            else user_home / "Documents"
-                        )
+                        documents_path = onedrive_base / "Documents" if (onedrive_base / "Documents").exists() else user_home / "Documents"
                         path = str(documents_path)
 
                     elif lower_path == "downloads":
                         path = str(user_home / "Downloads")
 
                     elif lower_path == "pictures":
-                        pictures_path = (
-                            onedrive_base / "Pictures" if (onedrive_base / "Pictures").exists() 
-                            else user_home / "Pictures"
-                        )
+                        pictures_path = onedrive_base / "Pictures" if (onedrive_base / "Pictures").exists() else user_home / "Pictures"
                         path = str(pictures_path)
 
-                # Linux quick keywords
                 else:
                     from pathlib import Path
                     home = Path.home()
@@ -81,6 +70,7 @@ class CommandExecutor:
 
                 os.chdir(path)
                 return True, f"Changed directory to {os.getcwd()}"
+
 
             # Run other commands
             result = subprocess.run(

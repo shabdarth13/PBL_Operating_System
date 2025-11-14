@@ -1,6 +1,6 @@
 {
   "speech_recognition": {
-    "timeout": 4,
+    "timeout": 3,
     "phrase_time_limit": 15,
     "energy_threshold": 800,
     "dynamic_energy_threshold": true
