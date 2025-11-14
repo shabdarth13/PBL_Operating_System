@@ -1,6 +1,6 @@
 import speech_recognition as sr
 import logging
-from vocalshell.audio_utils import play_listen_sound
+from vocalshell.audio_utils import AudioPlayer
 
 logger = logging.getLogger(__name__)
 

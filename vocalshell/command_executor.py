@@ -1,3 +1,7 @@
+# ================================
+# updated_command_executor.py
+# ================================
+
 import subprocess
 import os
 import platform
@@ -15,18 +19,21 @@ class CommandExecutor:
         self.console = Console()
         self.config = config or {}
         self.is_windows = platform.system() == "Windows"
+
         try:
             self.tts_engine = pyttsx3.init()
             self.tts_engine.setProperty("rate", self.config.get("tts_rate", 150))
             self.tts_engine.setProperty("volume", self.config.get("tts_volume", 0.8))
         except:
             self.tts_engine = None
+
     def execute_command(self, command, metadata):
         try:
+            # Special handling for cd
             if command.lower().startswith("cd "):
                 path = command[3:].strip()
-                if self.is_windows and path.lower().startswith("/d "):
-                    path = path[3:].strip()
+
+                # Windows quick keywords
                 if self.is_windows:
                     from pathlib import Path
                     user_home = Path.home()
@@ -35,20 +42,30 @@ class CommandExecutor:
                     lower_path = path.lower()
 
                     if lower_path == "desktop":
-                        desktop_path = onedrive_base / "Desktop" if (onedrive_base / "Desktop").exists() else user_home / "Desktop"
+                        desktop_path = (
+                            onedrive_base / "Desktop" if (onedrive_base / "Desktop").exists() 
+                            else user_home / "Desktop"
+                        )
                         path = str(desktop_path)
 
                     elif lower_path == "documents":
-                        documents_path = onedrive_base / "Documents" if (onedrive_base / "Documents").exists() else user_home / "Documents"
+                        documents_path = (
+                            onedrive_base / "Documents" if (onedrive_base / "Documents").exists() 
+                            else user_home / "Documents"
+                        )
                         path = str(documents_path)
 
                     elif lower_path == "downloads":
                         path = str(user_home / "Downloads")
 
                     elif lower_path == "pictures":
-                        pictures_path = onedrive_base / "Pictures" if (onedrive_base / "Pictures").exists() else user_home / "Pictures"
+                        pictures_path = (
+                            onedrive_base / "Pictures" if (onedrive_base / "Pictures").exists() 
+                            else user_home / "Pictures"
+                        )
                         path = str(pictures_path)
 
+                # Linux quick keywords
                 else:
                     from pathlib import Path
                     home = Path.home()
@@ -64,12 +81,14 @@ class CommandExecutor:
 
                 os.chdir(path)
                 return True, f"Changed directory to {os.getcwd()}"
+
+            # Run other commands
             result = subprocess.run(
-            command,
-            shell=True,
-            capture_output=True,
-            text=True,
-            timeout=30
+                command,
+                shell=True,
+                capture_output=True,
+                text=True,
+                timeout=30
             )
 
             if result.returncode == 0:
@@ -79,9 +98,43 @@ class CommandExecutor:
 
         except Exception as e:
             return False, str(e)
+
     def display_result(self, command, success, output, metadata, use_tts=False):
         style = "green" if success else "red"
         self.console.print(Panel(Text(output, style=style), title=command, border_style=style))
+
         if use_tts and self.tts_engine:
             self.tts_engine.say(output)
             self.tts_engine.runAndWait()
+
+# Helper for rename operations
+import shlex
+
+def prepare_rename_command(command_template, params):
+    old = params.get("old")
+    new = params.get("new")
+
+    if not old or not new:
+        return None, "Missing old or new name"
+
+    if not os.path.exists(old):
+        return None, f"File not found: {old}"
+
+    old_base, old_ext = os.path.splitext(old)
+    new_base, new_ext = os.path.splitext(new)
+
+    if old_ext and not new_ext:
+        new = new + old_ext
+        params["new"] = new
+
+    old_quoted = f'"{old}"' if ' ' in old else old
+    new_quoted = f'"{new}"' if ' ' in new else new
+
+    final_cmd = command_template.format(old=old_quoted, new=new_quoted)
+    return final_cmd, None
+
+
+# ================================
+# updated_nlp_command_parser.py
+# ================================
+

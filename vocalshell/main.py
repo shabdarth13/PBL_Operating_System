@@ -28,7 +28,7 @@ class VocalShell:
         self.is_windows = platform.system() == "Windows"
         self.history = []
     def run(self):
-        console.print(Panel(Text("🎤 VocalShell - Say 'exit' to quit", style="bold green"), border_style="green"))
+        console.print(Panel(Text(" VocalShell - Say 'exit' to quit", style="bold green"), border_style="green"))
         while True:
             play_listen_sound()
             text = self.speech_recognizer.listen()

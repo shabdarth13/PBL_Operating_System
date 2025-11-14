@@ -2,13 +2,13 @@
   "command_mappings": {
     "list_files": {
       "patterns": ["list files", "show file", "ls", "dir", "what is in this folder"],
-      "windows_command": "dir {path}",
-      "linux_command": "ls -la {path}",
+      "windows_command": "dir ",
+      "linux_command": "ls ",
       "description": "List files and directories",
       "dangerous": false
     },
     "change_directory": {
-      "patterns": ["change directory to (.*)", "cd (.*)", "go to (.*)", "navigate to (.*)"],
+      "patterns": ["change path to (.*)", "cd (.*)", "go to (.*)", "navigate to (.*)"],
       "windows_command": "cd /d {path}",
       "linux_command": "cd {path}",
       "description": "Change directory",
@@ -36,7 +36,7 @@
       "dangerous": false
     },
     "delete_file": {
-      "patterns": ["delete file (.*)", "erase file (.*)", "remove file (.*)"],
+      "patterns": ["delete file (.*)", "erase file (.*)", "remove file (.*)","(.*) ko delete karo"],
       "windows_command": "del /f {filename}",
       "linux_command": "rm -f {filename}",
       "description": "Delete a file",
@@ -49,20 +49,30 @@
       "description": "Copy a file",
       "dangerous": false
     },
-    "move_file": {
-      "patterns": ["move file (.*) to (.*)"],
-      "windows_command": "move {source} {destination}",
-      "linux_command": "mv {source} {destination}",
-      "description": "Move or rename a file",
-      "dangerous": false
-    },
+   "move_file": {
+  "patterns": [
+    "move (.*) to (.*)",
+    "move file (.*) to (.*)",
+    "move (.*) into (.*)",
+    "move (.*) (.*)"
+  ],
+  "windows_command": "move \"{source}\" \"{destination}\"",
+  "linux_command": "mv \"{source}\" \"{destination}\"",
+  "description": "Move a file from one location to another",
+  "dangerous": false
+},
     "rename_file": {
-      "patterns": ["rename file (.*) to (.*)"],
-      "windows_command": "rename {old} {new}",
-      "linux_command": "mv {old} {new}",
-      "description": "Rename file",
-      "dangerous": false
-    },
+  "patterns": [
+    "rename (.*) to (.*)",
+    "rename file (.*) to (.*)",
+    "rename (.*) as (.*)",
+    "rename (.*) (.*)"
+  ],
+  "windows_command": "rename {old} {new}",
+  "linux_command": "mv {old} {new}",
+  "description": "Rename or move a file",
+  "dangerous": false
+},
     "system_info": {
       "patterns": ["system info", "show system details", "computer information", "ver", "hostname"],
       "windows_command": "systeminfo",
@@ -148,12 +158,18 @@
       "dangerous": false
     },
     "fc": {
-      "patterns": ["compare files (.*) and (.*)"],
-      "windows_command": "fc {file1} {file2}",
-      "linux_command": "diff {file1} {file2}",
-      "description": "Compare files",
-      "dangerous": false
-    },
+  "patterns": [
+    "compare files (.*) and (.*)",
+    "compare file (.*) with (.*)",
+    "compare (.*) and (.*)",
+    "compare (.*) with (.*)"
+  ],
+  "windows_command": "cmd /c fc {file1} {file2}"
+  ,
+  "linux_command": "diff \"{file1}\" \"{file2}\"",
+  "description": "Compare two files",
+  "dangerous": false
+},
     "more": {
       "patterns": ["show file (.*) page by page"],
       "windows_command": "more {filename}",
@@ -169,12 +185,13 @@
       "dangerous": true
     },
     "robocopy": {
-      "patterns": ["robocopy (.*) to (.*)"],
-      "windows_command": "robocopy {source} {destination} /E",
-      "linux_command": "cp -r {source} {destination}",
-      "description": "Advanced file copy",
-      "dangerous": false
-    },
+  "patterns": ["robocopy (.+) to (.+)"],
+  "windows_command": "robocopy \"{source}\" \"{destination}\" /E",
+  "linux_command": "cp -r \"{source}\" \"{destination}\"",
+  "placeholders": ["source", "destination"],
+  "description": "Advanced file/directory copy",
+  "dangerous": false
+},
     "xcopy": {
       "patterns": ["xcopy (.*) to (.*)"],
       "windows_command": "xcopy {source} {destination} /E /I",
@@ -265,7 +282,53 @@
       "linux_command": "tar -cf {archive} {source}",
       "description": "Create tar archive",
       "dangerous": false
-    }
+    },
+    "write_file": {
+    "patterns": [
+        "write (.+) into file (.+)",
+        "write (.+) to file (.+)",
+        "overwrite file (.+) with (.+)",
+        
+        "right (.+) into (.+)",
+        "right (.+) to (.+)",
+        "right (.+) in (.+)",
+
+        "write (.+)",
+        "right (.+)"
+    ],
+    "windows_command": "powershell -Command \"Set-Content -Path '{file}' -Value '{text}'\"",
+    "linux_command": "echo \"{text}\" > {file}",
+    "description": "Write or overwrite text into a file",
+    "dangerous": false
+},
+"append_file": {
+  "patterns": [
+    "append (.+) to file (.+)",
+    "add (.+) to file (.+)",
+    "append (.+) into file (.+)",
+
+    "append (.+)",  
+    "add (.+)"      
+  ],
+  "windows_command": "powershell -Command \"Add-Content -Path '{file}' -Value '{text}'\"",
+  "linux_command": "echo \"{text}\" >> {file}",
+  "description": "Append text to an existing file",
+  "dangerous": false
+},
+"read_file": {
+  "patterns": [
+    "read (.*)",
+    "read file (.*)",
+    "display file (.*)",
+    "open (.*) and read"
+  ],
+  "windows_command": "type {file}",
+  "linux_command": "cat {file}",
+  "description": "Read and display the contents of a file",
+  "dangerous": false
+}
+
+
   },
   "dangerous_commands": [
     "rmdir /s", "del /f", "format", "shutdown", "taskkill /f", "rm -rf", "attrib", "docker stop", "mkfs"

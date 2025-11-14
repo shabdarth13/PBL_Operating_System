@@ -6,19 +6,19 @@
     "log_level": "INFO"
   },
   "speech": {
-    "timeout": 5,
-    "phrase_time_limit": 10,
+    "timeout": 4,
+    "phrase_time_limit": 15,
     "prefer_offline": false
   },
   "executor": {
     "tts_rate": 150,
-    "tts_volume": 0.8,
+    "tts_volume": 1.0,
     "confirm_dangerous": true,
     "max_output_length": 1000
   },
   "ui": {
     "show_welcome": true,
     "show_status": true,
-    "color_scheme": "default"
+    "color_scheme": "light"
   }
 }
