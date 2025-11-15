@@ -1,0 +1,190 @@
+:root{
+  --bg:#05060a;
+  --panel:#0f1116;
+  --neon-cyan: #00e6ff;
+  --neon-cyan-2:#39f0ff;
+  --muted:#9aa3b2;
+  --glow: 0 8px 30px rgba(0,230,255,0.12);
+  --accent:#7c4dff;
+}
+
+/* Page */
+.neon-app {
+  min-height:100vh;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(0,230,255,0.02), transparent 5%),
+              radial-gradient(700px 400px at 90% 90%, rgba(124,77,255,0.02), transparent 5%),
+              var(--bg);
+  color:#e6f7ff;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Header */
+.neon-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:26px 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.logo{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+.logo-icon{
+  width:44px;
+  height:44px;
+  fill: linear-gradient(45deg,var(--neon-cyan),var(--accent));
+  filter: drop-shadow(0 6px 22px rgba(0,230,255,0.06));
+  stroke: var(--neon-cyan);
+  stroke-width:0.2;
+  opacity:0.95;
+}
+.title{
+  font-size:20px;
+  font-weight:700;
+}
+.title .muted{
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+/* mic button */
+.status{display:flex;align-items:center;}
+.mic-glow{
+  padding:8px;
+  border-radius:999px;
+  transition:all .2s ease;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+}
+.mic-glow.active{
+  box-shadow: 0 8px 40px rgba(0,230,255,0.18), 0 2px 10px rgba(0,230,255,0.06);
+  transform:translateY(-2px);
+}
+.mic-btn{
+  background: linear-gradient(180deg,#00d6ff 0%, #00a8c7 100%);
+  border:none;
+  color:#00121a;
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow: 0 10px 30px rgba(0,230,255,0.12);
+  transition: transform .14s ease, box-shadow .14s ease;
+}
+.mic-btn:active{ transform: scale(.98) }
+.mic-icon{ width:26px; height:26px; fill:#00121a; opacity:0.98; }
+
+/* Main layout */
+.neon-main{
+  display:flex;
+  gap:28px;
+  padding:32px 48px;
+  flex:1;
+  align-items:flex-start;
+}
+
+/* left column */
+.left{
+  flex:1.6;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* right col */
+.right{
+  flex:0.8;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* panels */
+.panel{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(0,230,255,0.06);
+  padding:20px;
+  border-radius:14px;
+  box-shadow: var(--glow);
+}
+
+/* recognized */
+.panel.recognized h3,
+.panel.terminal h3,
+.panel.history h3,
+.panel.tips h3 {
+  font-size:16px;
+  margin:0 0 10px 0;
+  color: var(--neon-cyan-2);
+  text-shadow: 0 2px 12px rgba(0,230,255,0.06);
+}
+
+.recognized-text{
+  font-size:20px;
+  color: #c0fbff;
+  padding:10px 6px;
+  min-height:60px;
+  border-radius:8px;
+  background: rgba(0,230,255,0.02);
+}
+
+/* terminal */
+.terminal-output{
+  background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.08));
+  min-height:170px;
+  max-height:320px;
+  overflow:auto;
+  padding:14px;
+  font-family: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+  color: #aef6ff;
+  border-radius:10px;
+  font-size:14px;
+  line-height:1.45;
+  white-space:pre-wrap;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+  border: 1px solid rgba(0,230,255,0.04);
+}
+
+/* history list */
+.panel.history ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.panel.history li{
+  padding:10px 8px;
+  border-radius:8px;
+  margin-bottom:8px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.008), rgba(255,255,255,0.004));
+  border: 1px solid rgba(255,255,255,0.02);
+}
+.hist-cmd{ color:#bffaff; font-weight:600; }
+.hist-time{ color:var(--muted); font-size:12px; margin-left:8px; }
+.hist-out{ color:#9ef1a7; margin-top:6px; font-size:13px; }
+
+/* tips */
+.panel.tips ul{ margin:0; padding-left:18px; color:var(--muted); }
+.panel.tips li{ margin-bottom:8px; }
+
+/* footer */
+.neon-footer{
+  padding:18px 48px;
+  border-top:1px solid rgba(255,255,255,0.02);
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* responsive */
+@media (max-width:1000px){
+  .neon-main{ flex-direction:column; padding:20px; }
+  .right{ order:2; }
+}

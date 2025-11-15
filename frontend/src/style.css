@@ -1,0 +1,71 @@
+/* Global layout */
+body {
+  margin: 0;
+  padding: 0;
+  background: #0f0f0f;
+  color: white;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Title */
+.title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Mic Button */
+.mic-btn {
+  background: #1e88e5;
+  color: white;
+  padding: 15px 35px;
+  font-size: 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.mic-btn:hover {
+  background: #1565c0;
+}
+
+.mic-btn.listening {
+  background: #424242;
+  cursor: not-allowed;
+}
+
+/* Cards */
+.card {
+  width: 70%;
+  background: #1c1c1c;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
+}
+
+.card h2 {
+  margin-bottom: 8px;
+  font-size: 22px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 5px;
+}
+
+.command-text {
+  color: #80d8ff;
+  font-size: 18px;
+}
+
+.output-text {
+  color: #a5e887;
+  font-size: 18px;
+}
