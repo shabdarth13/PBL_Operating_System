@@ -16,6 +16,14 @@ class NLPCommandParser:
             "please", "can you", "could you", "would you", "will you",
             "i want to", "i would like to", "kindly", "just"
         ]
+    def _normalize_input(self, text: str) -> str:
+        text = text.lower().strip()
+        for filler in self.filler_words:
+            text = text.replace(filler, "")
+    # Strip common file extensions so user can say Apple.txt or Apple
+        text = re.sub(r'\.(txt|csv|log|py|md)$', '', text)
+        return text.strip()
+
 
     def _load_command_mappings(self, config_path=None):
         if config_path:
