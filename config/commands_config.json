@@ -307,12 +307,13 @@
       "dangerous": false
     },
     "read_file": {
-      "patterns": ["read (.*)", "read file (.*)", "display file (.*)", "open (.*) and read"],
+      "patterns": ["read (.*)", "read file (.*)", "display file (.*)", "open (.*) and read", "padho (.*)"],
       "windows_command": "type {file}",
       "linux_command": "cat {file}",
       "description": "Read file content",
       "dangerous": false
-    }
+}
+
   },
 
   "dangerous_commands": [
