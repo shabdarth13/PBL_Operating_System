@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
+=#!/usr/bin/env python3
 import logging
 import platform
 from vocalshell.speech_engine import SpeechRecognizer
 from vocalshell.nlp_parser import NLPCommandParser
 from vocalshell.command_executor import CommandExecutor
-from vocalshell.audio_utils import play_listen_sound, play_success_sound
+from vocalshell.audio_utils import AudioPlayer, play_listen_sound, play_success_sound
 from vocalshell.utils import load_config, setup_logging
 from rich.console import Console
 from rich.panel import Panel
